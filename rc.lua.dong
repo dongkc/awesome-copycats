@@ -432,6 +432,10 @@ globalkeys = awful.util.table.join(
     -- awful.key({ modkey }, "2", function () awful.spawn(gui_editor) end),
     awful.key({ modkey }, "w", function () awful.spawn(terminal .. " -e emacs -nw -mm") end),
     awful.key({ modkey }, "e", function () awful.spawn(terminal .. " -e ranger") end),
+    awful.key({ modkey }, "t", function ()
+						os.execute(string.format("xrdb -merge %s/.config/Xcolours/solarized-light", os.getenv("HOME"))) end),
+    awful.key({ modkey }, "y", function ()
+						os.execute(string.format("xrdb -merge %s/.config/Xcolours/solarized", os.getenv("HOME"))) end),
 
     -- Default
     --[[ Menubar
@@ -581,6 +585,10 @@ awful.rules.rules = {
     { rule = { class = "Firefox" },
       properties = { screen = 1, tag = screen[1].tags[1] } },
 
+    { rule = { class = "Emacs" },
+          properties = { maximized = true,
+                         floating = true } },
+
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
 
@@ -593,7 +601,7 @@ awful.rules.rules = {
                      maximized_vertical = true,
                      floating = true } },
 
-    { rule = { class = "luakit" },
+    { rule = { class = "Luakit" },
           properties = { floating = true,
                          maximized_horizontal = true,
                          maximized_vertical = true,
