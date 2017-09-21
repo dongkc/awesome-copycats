@@ -68,7 +68,7 @@ local gui_editor   = "emacs"
 local browser      = "luakit"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}
+awful.util.tagnames = { "TERM", "EMACS", "WWW", "PDF"}
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -231,22 +231,22 @@ globalkeys = awful.util.table.join(
               {description = "go back", group = "tag"}),
 
     -- By direction client focus
-    awful.key({ modkey }, "j",
+    awful.key({ modkey }, "h",
         function()
             awful.client.focus.bydirection("down")
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey }, "k",
+    awful.key({ modkey }, "l",
         function()
             awful.client.focus.bydirection("up")
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey }, "h",
+    awful.key({ modkey }, "j",
         function()
             awful.client.focus.bydirection("left")
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey }, "l",
+    awful.key({ modkey }, "k",
         function()
             awful.client.focus.bydirection("right")
             if client.focus then client.focus:raise() end
@@ -303,13 +303,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
-    awful.key({ altkey, "Shift"   }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
+    awful.key({ altkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
+    awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
               {description = "decrease the number of master clients", group = "layout"}),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
               {description = "increase the number of columns", group = "layout"}),
@@ -585,9 +585,9 @@ awful.rules.rules = {
     { rule = { class = "Firefox" },
       properties = { screen = 1, tag = screen[1].tags[1] } },
 
-    { rule = { class = "Emacs" },
-          properties = { maximized = true,
-                         floating = true } },
+    -- { rule = { class = "Emacs" },
+    --       properties = { maximized = true,
+    --                      floating = true } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
@@ -601,11 +601,11 @@ awful.rules.rules = {
                      maximized_vertical = true,
                      floating = true } },
 
-    { rule = { class = "Luakit" },
-          properties = { floating = true,
-                         maximized_horizontal = true,
-                         maximized_vertical = true,
-                         floating = true } },
+    -- { rule = { class = "Luakit" },
+    --       properties = { floating = true,
+    --                      maximized_horizontal = true,
+    --                      maximized_vertical = true,
+    --                      floating = true } },
 
     { rule = { class = "Zathura" },
           properties = { floating = true,
