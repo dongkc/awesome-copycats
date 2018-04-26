@@ -55,7 +55,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root", "urxvt -e emacs --daemon"})
+run_once({ "urxvtd", "unclutter -root", "emacs", "/opt/nutstore/bin/nutstore-pydaemon.py &>/dev/null &"})
 -- }}}
 
 -- {{{ Variable definitions
@@ -68,7 +68,7 @@ local gui_editor   = "emacs"
 local browser      = "luakit"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "TERM", "EMACS", "WWW", "PDF"}
+awful.util.tagnames = { "TERM", "EMACS", "WWW", "PDF", "DEBUG", "OCD", "QT"}
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -585,14 +585,14 @@ awful.rules.rules = {
     { rule = { class = "Firefox" },
       properties = { screen = 1, tag = screen[1].tags[1] } },
 
-    -- { rule = { class = "Emacs" },
-    --       properties = { maximized = true,
-    --                      floating = true } },
+    { rule = { class = "Emacs" },
+          properties = { maximized = true,
+                         floating = true } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
 
-    { rule = { class = "MPlayer" },
+    { rule = { class = "mpv" },
           properties = { floating = true } },
 
     { rule = { class = "Qt Creator" },
@@ -601,11 +601,11 @@ awful.rules.rules = {
                      maximized_vertical = true,
                      floating = true } },
 
-    -- { rule = { class = "Luakit" },
-    --       properties = { floating = true,
-    --                      maximized_horizontal = true,
-    --                      maximized_vertical = true,
-    --                      floating = true } },
+    { rule = { class = "Luakit" },
+          properties = { floating = true,
+                         maximized_horizontal = true,
+                         maximized_vertical = true,
+                         floating = true } },
 
     { rule = { class = "Zathura" },
           properties = { floating = true,
